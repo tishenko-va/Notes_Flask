@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Заметки</title>
+</head>
+<body>
+<h1>Создать заметку</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <label for="title">{{ form.title.label }}</label>
+    {{ form.title(size=32) }}<br>
+    {% for error in form.title.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+    <label for="content">{{ form.content.label }}</label>
+    {{ form.content(cols=30, rows=10) }}<br>
+    {% for error in form.content.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+
+    <input type="submit" value="Save">
+</form>
+<a href="{{ url_for('note_list') }}">Вернуться к заметкам</a>
+</body>
+</html>

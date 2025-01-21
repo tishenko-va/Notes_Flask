@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Заметки</title>
+</head>
+<body>
+<h1>Заметки</h1>
+<a href="{{ url_for('note_create') }}">Создать заметку</a>
+<ul>
+    {% for note in notes %}
+        <li>
+            <strong>{{ note.title }}</strong><br>
+            {{ note.content }}<br>
+            <em>Создано: {{ note.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</em><br>
+            <a href="{{ url_for('note_update', note_id=note.id) }}">Изменить</a> -
+            <form action="{{ url_for('note_delete', note_id=note.id) }}" method="post" style="display:inline;">
+                <input type="submit" value="Удалить">
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('logout') }}">Выйти</a>
+</body>
+</html>
