@@ -3,26 +3,123 @@
 <head>
     <meta charset="utf-8">
     <title>Заметки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87ceeb; /* Голубой фон */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center; /* Центрируем заголовок */
+            color: #fff; /* Цвет текста заголовка */
+        }
+
+        form {
+            max-width: 600px; /* Ограничиваем ширину формы */
+            margin: 0 auto; /* Центрируем форму */
+            background: white; /* Фон формы */
+            padding: 20px; /* Внутренний отступ */
+            border-radius: 10px; /* Закругление углов формы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+        }
+
+        label {
+            display: block; /* Блоковое отображение для меток */
+            margin-bottom: 5px; /* Отступ снизу */
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%; /* Ширина поля ввода */
+            padding: 10px; /* Внутренний отступ */
+            margin-bottom: 15px; /* Отступ снизу */
+            border: 1px solid #ddd; /* Обводка полей ввода */
+            border-radius: 5px; /* Закругление углов полей ввода */
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF; /* Цвет кнопки "Сохранить" */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем обводку */
+            padding: 10px 15px; /* Внутренний отступ кнопки */
+            border-radius: 5px; /* Закругление углов кнопки */
+            cursor: pointer; /* Указатель при наведении */
+            width: 100%; /* Ширина кнопки */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+
+        .error {
+            color: red; /* Цвет ошибок */
+            font-size: 0.9em; /* Размер шрифта для ошибок */
+        }
+
+        a {
+            display: block; /* Блоковое отображение для ссылки */
+            text-align: center; /* Центрируем ссылку */
+            margin-top: 20px; /* Отступ сверху */
+            color: #007BFF; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Подчеркивание ссылки при наведении */
+        }
+    </style>
 </head>
 <body>
-<h1>Создать заметку</h1>
-<form method="POST">
-    {{ form.hidden_tag() }}
+    <h1>Создать заметку</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
 
-    <label for="title">{{ form.title.label }}</label>
-    {{ form.title(size=32) }}<br>
-    {% for error in form.title.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
+        <label for="title">{{ form.title.label }}</label>
+        {{ form.title(size=32) }}<br>
+        {% for error in form.title.errors %}
+            <span class="error">[{{ error }}]</span>
+        {% endfor %}
 
-    <label for="content">{{ form.content.label }}</label>
-    {{ form.content(cols=30, rows=10) }}<br>
-    {% for error in form.content.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
+        <label for="content">{{ form.content.label }}</label>
+        {{ form.content(cols=30, rows=10) }}<br>
+        {% for error in form.content.errors %}
+            <span class="error">[{{ error }}]</span>
+        {% endfor %}
 
-    <input type="submit" value="Save">
-</form>
-<a href="{{ url_for('note_list') }}">Вернуться к заметкам</a>
+        <input type="submit" value="Сохранить">
+    </form>
+    <a href="{{ url_for('note_list') }}">Вернуться к заметкам</a>
 </body>
 </html>
+
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Заметки</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Создать заметку</h1>-->
+<!--<form method="POST">-->
+<!--    {{ form.hidden_tag() }}-->
+
+<!--    <label for="title">{{ form.title.label }}</label>-->
+<!--    {{ form.title(size=32) }}<br>-->
+<!--    {% for error in form.title.errors %}-->
+<!--        <span style="color: red;">[{{ error }}]</span>-->
+<!--    {% endfor %}-->
+
+<!--    <label for="content">{{ form.content.label }}</label>-->
+<!--    {{ form.content(cols=30, rows=10) }}<br>-->
+<!--    {% for error in form.content.errors %}-->
+<!--        <span style="color: red;">[{{ error }}]</span>-->
+<!--    {% endfor %}-->
+
+<!--    <input type="submit" value="Save">-->
+<!--</form>-->
+<!--<a href="{{ url_for('note_list') }}">Вернуться к заметкам</a>-->
+<!--</body>-->
+<!--</html>-->

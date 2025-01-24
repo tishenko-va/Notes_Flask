@@ -2,24 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заметки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87ceeb; /* Установлен голубой фон */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center; /* Центрируем заголовок */
+            color: #fff; /* Цвет текста заголовка */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF; /* Цвет ссылок */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+
+        ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0;
+            max-width: 600px; /* Ограничиваем ширину списка */
+            margin: 0 auto; /* Центрируем список */
+        }
+
+        li {
+            background: white; /* Фон для элементов списка */
+            border: 1px solid #ddd; /* Обводка для элементов списка */
+            border-radius: 5px; /* Закругление углов */
+            padding: 15px; /* Внутренний отступ */
+            margin-bottom: 10px; /* Отступ между элементами списка */
+            transition: box-shadow 0.3s ease; /* Плавный переход для тени */
+        }
+
+        li:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+        }
+
+        form {
+            display: inline; /* Отображаем форму на одной строке */
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545; /* Цвет кнопки "Удалить" */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем обводку */
+            padding: 5px 10px; /* Внутренний отступ кнопки */
+            border-radius: 5px; /* Закругление углов кнопки */
+            cursor: pointer; /* Указатель при наведении */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333; /* Цвет кнопки при наведении */
+        }
+
+        .logout-link {
+            display: block; /* Отображаем ссылку "Выйти" на отдельной строке */
+            text-align: center; /* Центрируем ссылку "Выйти" */
+            margin-top: 20px; /* Отступ сверху */
+            color: #fff; /* Цвет текста ссылки "Выйти" */
+        }
+    </style>
 </head>
 <body>
-<h1>Заметки</h1>
-<a href="{{ url_for('note_create') }}">Создать заметку</a>
-<ul>
-    {% for note in notes %}
-        <li>
-            <strong>{{ note.title }}</strong><br>
-            {{ note.content }}<br>
-            <em>Создано: {{ note.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</em><br>
-            <a href="{{ url_for('note_update', note_id=note.id) }}">Изменить</a> -
-            <form action="{{ url_for('note_delete', note_id=note.id) }}" method="post" style="display:inline;">
-                <input type="submit" value="Удалить">
-            </form>
-        </li>
-    {% endfor %}
-</ul>
-<a href="{{ url_for('logout') }}">Выйти</a>
+    <h1>Заметки</h1>
+    <a href="{{ url_for('note_create') }}">Создать заметку</a>
+    <ul>
+        {% for note in notes %}
+            <li>
+                <strong>{{ note.title }}</strong><br>
+                {{ note.content }}<br>
+                <em>Создано: {{ note.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</em><br>
+                <a href="{{ url_for('note_update', note_id=note.id) }}">Изменить</a> -
+                <form action="{{ url_for('note_delete', note_id=note.id) }}" method="post">
+                    <input type="submit" value="Удалить">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a class="logout-link" href="{{ url_for('logout') }}">Выйти</a>
 </body>
 </html>
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Заметки</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Заметки</h1>-->
+<!--<a href="{{ url_for('note_create') }}">Создать заметку</a>-->
+<!--<ul>-->
+<!--    {% for note in notes %}-->
+<!--        <li>-->
+<!--            <strong>{{ note.title }}</strong><br>-->
+<!--            {{ note.content }}<br>-->
+<!--            <em>Создано: {{ note.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</em><br>-->
+<!--            <a href="{{ url_for('note_update', note_id=note.id) }}">Изменить</a> - -->
+<!--            <form action="{{ url_for('note_delete', note_id=note.id) }}" method="post" style="display:inline;">-->
+<!--                <input type="submit" value="Удалить">-->
+<!--            </form>-->
+<!--        </li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+<!--<a href="{{ url_for('logout') }}">Выйти</a>-->
+<!--</body>-->
+<!--</html>-->

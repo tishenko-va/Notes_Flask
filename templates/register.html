@@ -3,15 +3,79 @@
 <head>
     <meta charset="utf-8">
     <title>Регистрация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87ceeb; /* Голубой фон */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center; /* Центрируем заголовок */
+            color: #fff; /* Цвет текста заголовка */
+        }
+
+        form {
+            max-width: 400px; /* Ограничиваем ширину формы */
+            margin: 0 auto; /* Центрируем форму */
+            background: white; /* Фон формы */
+            padding: 20px; /* Внутренний отступ */
+            border-radius: 10px; /* Закругление углов формы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+        }
+
+        label {
+            display: block; /* Блоковое отображение для меток */
+            margin-bottom: 5px; /* Отступ снизу */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%; /* Ширина поля ввода */
+            padding: 10px; /* Внутренний отступ */
+            margin-bottom: 15px; /* Отступ снизу */
+            border: 1px solid #ddd; /* Обводка полей ввода */
+            border-radius: 5px; /* Закругление углов полей ввода */
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF; /* Цвет кнопки "Регистрация" */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем обводку */
+            padding: 10px 15px; /* Внутренний отступ кнопки */
+            border-radius: 5px; /* Закругление углов кнопки */
+            cursor: pointer; /* Указатель при наведении */
+            width: 100%; /* Ширина кнопки */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+
+        .login-link {
+            display: block; /* Блоковое отображение для ссылки */
+            text-align: center; /* Центрируем текст ссылки */
+            margin-top: 15px; /* Отступ сверху */
+            color: #007BFF; /* Цвет текста ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<h1>Регистрация</h1>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username(size=32) }}<br>
-    {{ form.password.label }} {{ form.password(size=32) }}<br>
-    {{ form.repeat_password.label }} {{ form.repeat_password(size=32) }}<br>
-    <input type="submit" value="Register">
-</form>
+    <h1>Регистрация</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }} {{ form.username(size=32) }}<br>
+        {{ form.password.label }} {{ form.password(size=32) }}<br>
+        {{ form.repeat_password.label }} {{ form.repeat_password(size=32) }}<br>
+        <input type="submit" value="Регистрация">
+    </form>
+    <a class="login-link" href="/login">Есть аккаунт?</a> <!-- Ссылка на страницу входа -->
 </body>
 </html>

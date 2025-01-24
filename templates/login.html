@@ -4,25 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87ceeb; /* Голубой фон */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center; /* Центрируем заголовок */
+            color: #fff; /* Цвет текста заголовка */
+        }
+
+        form {
+            max-width: 400px; /* Ограничиваем ширину формы */
+            margin: 0 auto; /* Центрируем форму */
+            background: white; /* Фон формы */
+            padding: 20px; /* Внутренний отступ */
+            border-radius: 10px; /* Закругление углов формы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+        }
+
+        div {
+            margin-bottom: 15px; /* Отступ снизу для каждого блока */
+        }
+
+        label {
+            display: block; /* Блоковое отображение для меток */
+            margin-bottom: 5px; /* Отступ снизу */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%; /* Ширина поля ввода */
+            padding: 10px; /* Внутренний отступ */
+            border: 1px solid #ddd; /* Обводка полей ввода */
+            border-radius: 5px; /* Закругление углов полей ввода */
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF; /* Цвет кнопки "Войти" */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем обводку */
+            padding: 10px 15px; /* Внутренний отступ кнопки */
+            border-radius: 5px; /* Закругление углов кнопки */
+            cursor: pointer; /* Указатель при наведении */
+            width: 100%; /* Ширина кнопки */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+
+        .error {
+            color: red; /* Цвет ошибок */
+            font-size: 0.9em; /* Размер шрифта для ошибок */
+        }
+
+        a {
+            display: block; /* Блоковое отображение для ссылки */
+            text-align: center; /* Центрируем ссылку */
+            margin-top: 20px; /* Отступ сверху */
+            color: #007BFF; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Подчеркивание ссылки при наведении */
+        }
+    </style>
 </head>
 <body>
     <h1>Вход</h1>
     <form method="POST">
         {{ form.hidden_tag() }}
+
         <div>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <span class="error">[{{ error }}]</span>
             {% endfor %}
         </div>
+
         <div>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <span class="error">[{{ error }}]</span>
             {% endfor %}
         </div>
+
         <div>
             {{ form.submit() }}
         </div>
@@ -30,3 +104,36 @@
     <p><a href="{{ url_for('register') }}">Регистрация</a></p>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Вход</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Вход</h1>-->
+<!--    <form method="POST">-->
+<!--        {{ form.hidden_tag() }}-->
+<!--        <div>-->
+<!--            {{ form.username.label }}<br>-->
+<!--            {{ form.username(size=32) }}<br>-->
+<!--            {% for error in form.username.errors %}-->
+<!--                <span style="color: red;">[{{ error }}]</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            {{ form.password.label }}<br>-->
+<!--            {{ form.password(size=32) }}<br>-->
+<!--            {% for error in form.password.errors %}-->
+<!--                <span style="color: red;">[{{ error }}]</span>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            {{ form.submit() }}-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <p><a href="{{ url_for('register') }}">Регистрация</a></p>-->
+<!--</body>-->
+<!--</html>-->

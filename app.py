@@ -6,7 +6,6 @@ from flask_login import login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-
 app = Flask(__name__)
 app.config.from_object('config.Config')
 db.init_app(app)
@@ -15,6 +14,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'register'
+
 
 @app.route('/')
 def home():
@@ -45,6 +45,7 @@ def register():
 
     return render_template('register.html', form=form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -68,6 +69,7 @@ def logout():
     logout_user()
     return redirect(url_for('register'))
 
+
 @app.route('/notes', methods=['GET'])
 @login_required
 def note_list():
@@ -75,18 +77,20 @@ def note_list():
     notes_list = Note.query.filter_by(user_id=current_user_id).order_by(Note.created_at.desc()).all()
     return render_template('note_list.html', notes=notes_list)
 
+
 @app.route('/notes/create', methods=['GET', 'POST'])
 @login_required
 def note_create():
     form = NoteForm()
     if form.validate_on_submit():
-        new_note = Note(title=form.title.data, content=form.content.data,  user_id=current_user.id)
+        new_note = Note(title=form.title.data, content=form.content.data, user_id=current_user.id)
         db.session.add(new_note)
         db.session.commit()
 
         return redirect(url_for('note_list'))
 
     return render_template('note_form.html', form=form)
+
 
 @app.route('/notes/update/<int:note_id>', methods=['GET', 'POST'])
 @login_required
@@ -101,6 +105,7 @@ def note_update(note_id):
 
     return render_template('note_form.html', form=form)
 
+
 @app.route('/notes/delete/<int:note_id>', methods=['GET', 'POST'])
 @login_required
 def note_delete(note_id):
@@ -112,6 +117,7 @@ def note_delete(note_id):
         return redirect(url_for('note_list'))
 
     return render_template('delete.html', note=note)
+
 
 if __name__ == '__main__':
     with app.app_context():
