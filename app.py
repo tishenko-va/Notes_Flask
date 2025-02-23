@@ -18,7 +18,7 @@ login_manager.login_view = 'register'
 
 @app.route('/')
 def home():
-    return "Добро пожаловать в заметки"
+    return render_template('main.html')
 
 
 @login_manager.user_loader
