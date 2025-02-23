@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добро пожаловать</title>
+    <style>
+        body {
+            background-color: #e0f7fa; /* Светло-голубой фон */
+            font-family: Arial, sans-serif; /* Шрифт */
+            text-align: center; /* Центрирование текста */
+            padding: 50px; /* Отступы */
+        }
+
+        h1 {
+            color: #00796b; /* Цвет заголовка */
+        }
+
+        p {
+            font-size: 18px; /* Размер шрифта */
+            color: #004d40; /* Цвет текста */
+        }
+
+        a {
+            text-decoration: none; /* Убираем подчеркивание у ссылок */
+            margin: 10px; /* Отступы между кнопками */
+        }
+
+        button {
+            background-color: #00796b; /* Цвет кнопки */
+            color: white; /* Цвет текста на кнопке */
+            border: none; /* Убираем границу */
+            border-radius: 5px; /* Скругление углов */
+            padding: 10px 20px; /* Внутренние отступы */
+            font-size: 16px; /* Размер шрифта на кнопке */
+            cursor: pointer; /* Указатель при наведении */
+            transition: background-color 0.3s; /* Плавный переход цвета */
+        }
+
+        button:hover {
+            background-color: #004d40; /* Цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в заметки</h1>
+    <p>Пожалуйста, выберите действие:</p>
+    <a href="{{ url_for('register') }}">
+        <button>Зарегистрироваться</button>
+    </a>
+    <a href="{{ url_for('login') }}">
+        <button>Войти</button>
+    </a>
+</body>
+</html>
